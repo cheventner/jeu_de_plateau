@@ -1,0 +1,181 @@
+body {
+  font-family: "Eagle Lake", cursive;
+}
+.header img {
+  width: 100%;
+}
+.header .title {
+  color: #fff;
+}
+.title {
+  padding-right: 1em;
+}
+.rule-title,
+.rule-subtitle,
+.rule-h4 {
+  justify-self: center;
+}
+.rule-subtitle,
+.rule-h4 {
+  margin: 0.5rem;
+}
+.rule-subtitle {
+  text-align: center;
+}
+.game-rule {
+  padding-left: 0.5rem;
+}
+/*! GRILLE CONTENU DU PLATEAU */
+.game-contain {
+  background: linear-gradient(
+    to right,
+    #50245d,
+    #ab4d60,
+    70%,
+    #e45f1d,
+    #e9a13d
+  );
+}
+.input-name_p1,
+.input-name_p2 {
+  font-family: "Eagle Lake", cursive;
+  padding-left: 0.5rem;
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 15%;
+  background: linear-gradient(to right, #e45f1d, 50%, #e9a13d);
+  color: #fff;
+}
+
+/* pour Chrome */
+::-webkit-input-placeholder {
+  color: #fff;
+}
+/* pour Firefox */
+input::placeholder {
+  color: #fff;
+  opacity: 1;
+}
+.class-name {
+  margin-top: 15px;
+}
+.name_p2 {
+  justify-self: end;
+}
+
+.name_p1,
+.name_p2 {
+  margin-top: 2vh;
+}
+
+/* !BOUTON "LANCER LE JEU" */
+.start_game {
+  font-size: 1rem;
+  font-family: "Eagle Lake", cursive;
+  align-items: center;
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(to right, #e45f1d, 50%, #e9a13d);
+  color: #fff;
+  border-radius: 15%;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  width: 20vh;
+  height: 10vh;
+  min-height: 50px;
+  min-width: 100px;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.start_game:active {
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+/*! GRILLE CONTENU DES JOUEURS */
+.box_p1,
+.box_p2 {
+  justify-items: center;
+  margin-bottom: 1rem;
+  height: 800px;
+  background: #fefff0;
+  box-shadow: 5px 5px 10px #666660, -5px -5px 10px #fffefe;
+}
+
+.player1,
+.player2 {
+  margin-left: 5rem;
+  margin-right: 5rem;
+  height: 2rem;
+}
+
+.name_player1,
+.name_player2 {
+  text-align: center;
+  justify-self: center;
+  border: solid 2px grey;
+  border-radius: 15%;
+  height: 8vh;
+  color: #fff;
+  background: linear-gradient(to right, #e45f1d, 50%, #e9a13d);
+  max-height: 30px;
+  width: 80%;
+}
+
+.avatar_p1,
+.avatar_p2 {
+  width: 120px;
+  height: 150px;
+  justify-self: center;
+  background-size: contain;
+}
+
+.avatar_p1 {
+  background-image: url(../img/avatar/sorcier_avatar.png);
+}
+.avatar_p2 {
+  background-image: url(../img/avatar/goblin_avatar.png);
+}
+.weapon-name_p1,
+.weapon-name_p2 {
+  font-size: 1.2rem;
+}
+.weapon-img_p1,
+.weapon-img_p2 {
+  width: 120px;
+}
+.attack_p1,
+.attack_p2,
+.defense_p1,
+.defense_p2 {
+  max-width: 30vh;
+  font-size: 0.9rem;
+  font-family: "Eagle Lake", cursive;
+  align-items: center;
+  background: linear-gradient(to right, #e45f1d, 50%, #e9a13d);
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 15%;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  width: 95%;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.attack_p1,
+.attack_p2,
+.defense_p1,
+.defense_p2 {
+  display: none;
+  margin-bottom: 50px;
+}
+
+/* !GRILLE CONTENU PLATEAU */
+.game-contain > #gameboard {
+  align-content: center;
+}

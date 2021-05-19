@@ -1,0 +1,31 @@
+.game-board {
+  width: 800px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.game-board > div.line > div {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #fff;
+  /* background-image: url("/img/floor/case-orange.png"); */
+  /* background-blend-mode: saturation;
+  background-size: cover; */
+}
+
+/* Manipule les éléments a l'intérieur des cases (player, weapons, obstacles) */
+.game-board > div.line > div > div {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+}
+
+.game-board div[class*="possible-"] {
+  background-color: #e9a13d9f;
+}
+
+.game-board div.player + div.weapon {
+  display: none;
+}

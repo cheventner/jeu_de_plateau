@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La revanche des sorciers</title>
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/sanitize.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/grid.css">
+  <link rel="stylesheet" href="./css/media.css">
+  <link rel="stylesheet" href="./css/game-board.css">
+</head>
+
+<body>
+
+  <div class="grid">
+    <header class="header">
+      <img class="bg" src="./img/bg_header.png" alt="dessin gobelin et sorcier">
+      <h1 class="title">La revanche des sorciers</h1>
+    </header>
+    <!-- !CONTENEUR REGLES DU JEU -->
+    <section class="rule-contain">
+      <h2 class="rule-title">Les règles du jeu</h2>
+      <h3 class="rule-subtitle">Les Gobelins ont créé le chaos sur Terranium. Il est temps pour les sorciers d’y faire
+        renaître la vie.
+      </h3>
+      <h4 class="rule-h4">L’heure de la revanche a sonné !!!</h4>
+      <p class="game-rule">sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+        sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumyLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+        et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumyLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyLorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumyLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+        labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+        amet, consetetur sadipscing elitr, sed diam nonumyLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+        accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+        dolor sit amet. Lorem ipsum dolor sit
+      </p>
+    </section>
+    <!-- !FIN CONTENEUR REGLES DU JEU -->
+
+    <!-- !CONTENEUR GRILLE DU JEU - NOM DES JOUEURS - DETAIL PERSONNAGE ET ARMES -->
+
+    <section class="game-contain">
+      <div class="class-name">
+        <div class="name_p1">
+          <label for="label-name_p1"></label>
+          <input class="input-name_p1" id="inputnamep1" placeholder="Nom JOUEUR 1" type="text"></input>
+        </div>
+        <div class="name_p2">
+          <label for="label-name_p2"></label>
+          <input class="input-name_p2" id="inputnamep2" placeholder="Nom JOUEUR 2" type="text"></input>
+        </div>
+        <button class="start_game">JOUER</button>
+      </div>
+      <section class="player1">
+        <div class="box_p1">
+          <p class="name_player1">Player 1</p>
+          <div class="avatar_p1"></div>
+          <p class="life_point_p1">Points de vie : 100</p>
+          <p class="weapon-name_p1">Boule de feu</p>
+          <img class="weapon-img_p1" src="./img/weapons/feu.png" alt="image de l'arme">
+          <p class="damage_p1">Dégâts : 10</p>
+          <!-- <button class="movement_p1">Déplacement</button> -->
+          <button class="attack_p1">Attaque</button>
+          <button class="defense_p1">Défense</button>
+        </div>
+
+      </section>
+      <section class="game-board" id="gameboard">
+      </section>
+      <section class="player2">
+        <div class="box_p2">
+          <p class="name_player2">Player 2</p>
+          <div class="avatar_p2"></div>
+          <p class="life_point_p2">Points de vie : 100</p>
+          <p class="weapon-name_p2">Avalanche de glace</p>
+          <img class="weapon-img_p2" src="./img/weapons/glace.png" alt="image de l'arme">
+          <p class="damage_p2">Dégâts : 10</p>
+          <!-- <button class="movement_p2">Déplacement</button> -->
+          <button class="attack_p2">Attaque</button>
+          <button class="defense_p2">Défense</button>
+        </div>
+      </section>
+
+
+    </section>
+    <!-- !FIN CONTENEUR GRILLE DU JEU - NOM DES JOUEURS - DETAIL PERSONNAGE ET ARMES -->
+
+    <footer class="footer">Copyright © Valérie Cheventner</footer>
+    <!-- !FIN GRID -->
+  </div>
+  <!-- JS -->
+  <script src="./javaScript/Weapon.js"></script>
+  <script src="./javaScript/Player.js"></script>
+  <script src="./javaScript/Map.js"></script>
+  <script src="./javaScript/Battle.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+
+</html>
