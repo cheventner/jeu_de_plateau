@@ -143,9 +143,8 @@ class GameMap {
     return Math.floor(Math.random() * max) + 1;
   }
 
-  // Montrer les positions disponibles pour le joueur courant
-  showAvailablePositionsForPlayer(currentPlayerIndex) {
-    // A chaque fois qu'on appelle cette méthode on supprime celles actuellement colorées en premier
+  // Supprimer les cases marquées comme "possibles pour le déplacement"
+  removePossibleCells() {
     this.gameboard
       .querySelectorAll('div[class*="possible"]')
       .forEach((element) => {
@@ -153,6 +152,12 @@ class GameMap {
         element.classList.remove("possible-2");
         element.classList.remove("possible-3");
       });
+  }
+
+  // Montrer les positions disponibles pour le joueur courant
+  showAvailablePositionsForPlayer(currentPlayerIndex) {
+    // A chaque fois qu'on appelle cette méthode on supprime celles actuellement colorées en premier
+    this.removePossibleCells();
 
     const currentPlayer = this.players[currentPlayerIndex];
     const currentPlayerPosition = currentPlayer.position;

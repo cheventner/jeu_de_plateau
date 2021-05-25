@@ -148,6 +148,8 @@ function movePhase(event) {
   //! Si il s'est arrêté sur une cellule adjacente à un autre player on passe en mode combat
   const enemy = map.getEnemyNextToPlayer(current);
   if (enemy) {
+    //! on supprime les cellules marquées comme possibles pour le joueur courant
+    map.removePossibleCells();
     //! on affiche les boutons  attaque et défense pour le joueur courant
     displayBtnAttkDef(current);
     //! on arrête d'écouter les évenements de déplacement
@@ -157,10 +159,10 @@ function movePhase(event) {
     //! on supprime les weapons de la map
     map.deleteWeaponDiv();
     const isWeapon = event.target.classList.remove("weapon");
+  } else {
+    //! Sinon on présente les positions possibles pour le joueur suivant
+    map.showAvailablePositionsForPlayer(current);
   }
-
-  //! Sinon on présente les positions possibles pour le joueur suivant
-  map.showAvailablePositionsForPlayer(current);
 }
 map.showAvailablePositionsForPlayer(getCurrentPlayer());
 document.querySelector("#gameboard").addEventListener("click", movePhase);
