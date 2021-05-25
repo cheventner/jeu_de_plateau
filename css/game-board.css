@@ -24,8 +24,12 @@
 
 .game-board div[class*="possible-"] {
   background-color: #e9a13d9f;
+  cursor: pointer;
 }
 
 .game-board div.player + div.weapon {
   display: none;
+}
+.game-board div.weapon {
+  display: block;
 }

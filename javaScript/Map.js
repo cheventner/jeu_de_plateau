@@ -335,40 +335,12 @@ class GameMap {
   }
 
   //todo je suis en train de faire ça
-  //todo on supprime les weapons sur les cases
-  // deleteWeaponAndBg(playerWeapon) {
-  //   let weapon = document.getElementsByClassName(".weapon");
+  //todo supprimer les weapons de la map
 
-  //   weapon.outerHTML = weapon;
-  //   let div = weapon.imgSrc;
-  //   console.log(weapon);
-  //   console.log(div);
-
-  //   // weapon.remove(weapon.imgSrc);
-
-  //   // On supprime l'image représentant l'arme
-  //   return weapon;
-  //   //todo fin
-  // }
-  // deleteWeaponAndBg() {
-  //   this.weapons.forEach((weapon) => {
-  //     const result = remove("weapon", weapon.imgSrc);
-  //     // this.weaponsItems.remove({ weapon: weapon, div: result.div });
-  //     console.log(result);
-  //   });
-  // }
-
-  deleteWeaponAndBg() {
-    const weapon = document.querySelectorAll(".weapon");
-    const weaponDiv = this.weaponsItems;
-
-    // console.log("weapon" + weapon);
-    // console.log("weaponDiv" + weaponDiv);
-    for (let i = 0; i > weaponDiv.length; i++) {
-      weaponDiv[i].parentNode.removeChild(weaponDiv[i]);
-    }
-
-    // console.log("weapon2" + weapon);
-    // console.log("weaponDiv2" + weaponDiv);
+  deleteWeaponDiv() {
+    const weaponList = this.weaponsItems;
+    let weapon = document.querySelector(".weapon");
+    weapon = weapon.remove(weapon);
   }
+  //todo FIN
 }

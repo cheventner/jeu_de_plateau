@@ -24,7 +24,36 @@ body {
 }
 .game-rule {
   padding-left: 0.5rem;
+  line-height: 40px;
+  list-style-type: circle;
 }
+/* !BOUTON "LANCER LE JEU" */
+.start_game {
+  font-size: 1rem;
+  font-family: "Eagle Lake", cursive;
+  align-items: center;
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(to right, #e45f1d, 50%, #e9a13d);
+  color: #fff;
+  border-radius: 15%;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  width: 20vh;
+  height: 10vh;
+  min-height: 50px;
+  min-width: 100px;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  cursor: url("pointerpm.cur"), pointer;
+}
+
+.start_game:active {
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
 /*! GRILLE CONTENU DU PLATEAU */
 .game-contain {
   background: linear-gradient(
@@ -45,6 +74,8 @@ body {
   border-radius: 15%;
   background: linear-gradient(to right, #e45f1d, 50%, #e9a13d);
   color: #fff;
+  margin-bottom: 50px;
+  cursor: pointer;
 }
 
 /* pour Chrome */
@@ -66,32 +97,6 @@ input::placeholder {
 .name_p1,
 .name_p2 {
   margin-top: 2vh;
-}
-
-/* !BOUTON "LANCER LE JEU" */
-.start_game {
-  font-size: 1rem;
-  font-family: "Eagle Lake", cursive;
-  align-items: center;
-  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
-    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
-  background: linear-gradient(to right, #e45f1d, 50%, #e9a13d);
-  color: #fff;
-  border-radius: 15%;
-  display: flex;
-  justify-content: center;
-  justify-self: center;
-  width: 20vh;
-  height: 10vh;
-  min-height: 50px;
-  min-width: 100px;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
-}
-
-.start_game:active {
-  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
-    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
 }
 
 /*! GRILLE CONTENU DES JOUEURS */
@@ -145,6 +150,7 @@ input::placeholder {
 .weapon-img_p1,
 .weapon-img_p2 {
   width: 120px;
+  height: 130px;
 }
 .attack_p1,
 .attack_p2,
