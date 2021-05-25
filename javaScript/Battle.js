@@ -39,12 +39,9 @@ let btnPlay = document.querySelector(".start_game");
 btnPlay.addEventListener("click", () => {
   let ruleContain = document.querySelector(".rule-contain");
   let gameContain = document.querySelector(".game-contain");
-  if (getComputedStyle(ruleContain).display != "none") {
-    ruleContain.style.display = "none";
-  }
-  if (getComputedStyle(gameContain).display === "none") {
-    gameContain.style.display = "grid";
-  }
+
+  ruleContain.style.display = "none";
+  gameContain.style.display = "grid";
 });
 
 //! afficher et cacher bouton "Attack" et "Defense"
@@ -53,33 +50,6 @@ let btnAttackP1 = document.querySelector(".attack_p1");
 let btnAttackP2 = document.querySelector(".attack_p2");
 let btnDefenseP1 = document.querySelector(".defense_p1");
 let btnDefenseP2 = document.querySelector(".defense_p2");
-
-//* afficher bouton attack (joueur1)
-function displayBtnAttkDef(current) {
-  if (current === 0) {
-    if (getComputedStyle(btnAttackP1).display != "none") {
-      btnAttackP1.style.display = "none";
-    } else {
-      btnAttackP1.style.display = "block";
-    }
-    if (getComputedStyle(btnDefenseP1).display != "none") {
-      btnDefenseP1.style.display = "none";
-    } else {
-      btnDefenseP1.style.display = "block";
-    }
-  } else if (current === 1) {
-    if (getComputedStyle(btnAttackP2).display != "none") {
-      btnAttackP2.style.display = "none";
-    } else {
-      btnAttackP2.style.display = "block";
-    }
-    if (getComputedStyle(btnDefenseP2).display != "none") {
-      btnDefenseP2.style.display = "none";
-    } else {
-      btnDefenseP2.style.display = "block";
-    }
-  }
-}
 
 //! On créée la map qui ajoute la grille, les obstacles, les joueurs, les armes
 const map = new GameMap("#gameboard", 10, players);
@@ -94,16 +64,60 @@ function nextPlayerToPlay(current) {
   if (current === 0) {
     players[1].turnToPlay = true;
     players[0].turnToPlay = false;
-    players[0].stepsCount = players[0].abilityToMove;
   } else if (current === 1) {
     players[0].turnToPlay = true;
     players[1].turnToPlay = false;
+  }
+}
+// initialise le joueur suivant et réinitialise le nombre de pas possible pour le joueur qui vient de finir son tour
+function nextPlayerToMove(current) {
+  nextPlayerToPlay(current);
+  if (current === 0) {
+    players[0].stepsCount = players[0].abilityToMove;
+  } else if (current === 1) {
     players[1].stepsCount = players[1].abilityToMove;
   }
 }
 
-//! on gère le deplacement des joueurs
+// affiche les boutons d'actions au joueur courant
+function displayBtnAttkDef(current) {
+  if (current === 0) {
+    // On affiche les boutons pour le joueur 1
+    btnAttackP1.style.display = "block";
+    btnDefenseP1.style.display = "block";
+    // On cache les boutons pour le joueur 2
+    btnAttackP2.style.display = "none";
+    btnDefenseP2.style.display = "none";
+  } else if (current === 1) {
+    // On affiche les boutons pour le joueur 2
+    btnAttackP2.style.display = "block";
+    btnDefenseP2.style.display = "block";
+    // On cache les boutons pour le joueur 1
+    btnAttackP1.style.display = "none";
+    btnDefenseP1.style.display = "none";
+  }
+}
 
+// affiche les informations de l'arme portée par le joueur courant
+function updateWeaponInformation(current) {
+  const weapon = players[current].currentWeapon;
+  let dmgDiv, nameDiv, imgDiv;
+
+  if (current === 0) {
+    dmgDiv = ".damage_p1";
+    nameDiv = ".weapon-name_p1";
+    imgDiv = ".weapon-img_p1";
+  } else if (current === 1) {
+    dmgDiv = ".damage_p2";
+    nameDiv = ".weapon-name_p2";
+    imgDiv = ".weapon-img_p2";
+  }
+  document.querySelector(dmgDiv).innerHTML = "Dégâts: " + weapon.dmg;
+  document.querySelector(nameDiv).innerHTML = weapon.name;
+  document.querySelector(imgDiv).src = weapon.imgSrc;
+}
+
+//! on gère le deplacement des joueurs
 function movePhase(event) {
   //! on passe les conditions pour autoriser les déplacements sur les cases "possible" ou "weapon"
   const isWeapon = event.target.classList.contains("weapon");
@@ -135,15 +149,16 @@ function movePhase(event) {
   if (isWeapon) {
     const weapon = map.replaceWeaponDiv(
       event.target,
-      players[current].currentWeapon
+      players[current].currentWeapon,
     );
     players[current].changeWeapon(weapon);
+    // On met à jour les informations de l'arme du joueur courant
+    updateWeaponInformation(current);
   }
 
   //! c'est au joueur suivant de joueur
-  nextPlayerToPlay(current);
+  nextPlayerToMove(current);
   current = getCurrentPlayer();
-  map.createInformationPlayer(current);
 
   //! Si il s'est arrêté sur une cellule adjacente à un autre player on passe en mode combat
   const enemy = map.getEnemyNextToPlayer(current);

@@ -8,7 +8,7 @@ class GameMap {
     if (!players || players.length < 2) throw new Error("Cannot play alone");
     this.players = players;
     this.weapons = WEAPONS.filter((w) => w.dmg !== 10).map((w) =>
-      Object.assign({}, w)
+      Object.assign({}, w),
     );
     this.obstaclesPositions = [];
     this.weaponsItems = [];
@@ -76,7 +76,7 @@ class GameMap {
         position - 1,
         position,
         position + 1,
-        position + this.size
+        position + this.size,
       );
       player.div = div;
     }
@@ -109,13 +109,13 @@ class GameMap {
       return this.tryToPlaceItem(
         itemClass,
         itemBgImgSrc,
-        listOfPositionToExclude
+        listOfPositionToExclude,
       );
     }
 
     // On récupére l'élément HTML correspondant
     const cellWhereToPlace = this.gameboard.querySelector(
-      `div.cellnumber-${cellNumberWhereToPlace}`
+      `div.cellnumber-${cellNumberWhereToPlace}`,
     );
 
     // On vérifie si la cellule contient déjà quelque chose
@@ -127,7 +127,7 @@ class GameMap {
       return this.tryToPlaceItem(
         itemClass,
         itemBgImgSrc,
-        listOfPositionToExclude
+        listOfPositionToExclude,
       );
     }
     // Sinon on ajoute l'item dans la cellule
@@ -166,12 +166,12 @@ class GameMap {
       if (checkIfSameLine) {
         //! On récupére le parent (div.line) de la cellule courante
         const currentParent = this.gameboard.querySelector(
-          `div.cellnumber-${currentPlayerPosition}`
+          `div.cellnumber-${currentPlayerPosition}`,
         ).parentNode;
 
         //! On essaye de récupérer la cellule voulue
         const wantedPosition = this.gameboard.querySelector(
-          `div.cellnumber-${pos}`
+          `div.cellnumber-${pos}`,
         );
         //! On considére qu'on est sur la meme ligne si la cellule voulue existe et que la ligne parente est la même
         isOnLine =
@@ -183,7 +183,9 @@ class GameMap {
     };
 
     //! On vérifie que la cellule n'est pas un obstacle ou un joueur (considéré comme un obstacle)
-    const isObstacle = (pos) => this.obstaclesPositions.includes(pos) || this.players.map(p => p.position).includes(pos);
+    const isObstacle = (pos) =>
+      this.obstaclesPositions.includes(pos) ||
+      this.players.map((p) => p.position).includes(pos);
 
     //! On compile les positions possible autour du joueur courant
     const positions = [];
@@ -257,7 +259,7 @@ class GameMap {
       if (cell.includes("cellnumber")) {
         let tiretIndex = cell.indexOf("-");
         currentPlayer.position = Number(
-          cell.substring(tiretIndex + 1, cell.length)
+          cell.substring(tiretIndex + 1, cell.length),
         );
       }
       //! on renseigne la ClassName avec possible
@@ -272,7 +274,7 @@ class GameMap {
   //! Remplacement de l'arme
   replaceWeaponDiv(weaponDivToReplace, playerWeapon) {
     const weaponItem = this.weaponsItems.find(
-      (wi) => wi.div === weaponDivToReplace
+      (wi) => wi.div === weaponDivToReplace,
     );
     const parent = weaponItem.div.parentNode;
     const weaponReplaced = Object.assign({}, weaponItem.weapon);
@@ -310,39 +312,14 @@ class GameMap {
     return otherPlayers.find((p) => positionsAround.includes(p.position));
   }
 
-  //! générer les information des blocs "Players"
-  createInformationPlayer() {
-    const weaponP1 = players[0].weapons;
-    const weaponP2 = players[1].weapons;
-
-    if (weaponP1) {
-      const showDmg = weaponP1[0].dmg;
-      const showNameWeapon = weaponP1[0].name;
-      const showImg = weaponP1[0].imgSrc;
-
-      document.querySelector(".damage_p1").innerHTML = "Dégâts: " + showDmg;
-      document.querySelector(".weapon-name_p1").innerHTML = showNameWeapon;
-      document.querySelector(".weapon-img_p1").src = showImg;
-    }
-    if (weaponP2) {
-      const showDmg = weaponP2[0].dmg;
-      const showNameWeapon = weaponP2[0].name;
-      const showImg = weaponP2[0].imgSrc;
-
-      document.querySelector(".damage_p2").innerHTML = "Dégâts: " + showDmg;
-      document.querySelector(".weapon-name_p2").innerHTML = showNameWeapon;
-      document.querySelector(".weapon-img_p2").src = showImg;
-    }
-  }
-
   // Supprimer les weapons de la map
   deleteWeapons() {
     // On récupère la liste des éléments (= div) correspondants aux armes
     // que l'on a conservé lors de l'appel a la fonction createWeapons
-    const weaponsDivs = this.weaponsItems.map(wi => wi.div);
+    const weaponsDivs = this.weaponsItems.map((wi) => wi.div);
 
     // Pour chaque élément de la liste on le supprime du DOM
     // https://developer.mozilla.org/fr/docs/orphaned/Web/API/ChildNode/remove
-    weaponsDivs.forEach(div => div.remove());
+    weaponsDivs.forEach((div) => div.remove());
   }
 }
