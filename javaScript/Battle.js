@@ -37,10 +37,13 @@ inputP2.addEventListener("input", function (e) {
 let btnPlay = document.querySelector(".start_game");
 
 btnPlay.addEventListener("click", () => {
-  let hideRules = document.querySelector(".rule-contain");
-
-  if (getComputedStyle(hideRules).display != "none") {
-    hideRules.style.display = "none";
+  let ruleContain = document.querySelector(".rule-contain");
+  let gameContain = document.querySelector(".game-contain");
+  if (getComputedStyle(ruleContain).display != "none") {
+    ruleContain.style.display = "none";
+  }
+  if (getComputedStyle(gameContain).display === "none") {
+    gameContain.style.display = "grid";
   }
 });
 
@@ -147,13 +150,13 @@ function movePhase(event) {
   if (enemy) {
     //! on affiche les boutons  attaque et défense pour le joueur courant
     displayBtnAttkDef(current);
-
     //! on arrête d'écouter les évenements de déplacement
     document
       .querySelector("#gameboard")
       .removeEventListener("click", movePhase);
-
-    map.deleteWeaponAndBg();
+    //! on supprime les weapons de la map
+    map.deleteWeaponDiv();
+    const isWeapon = event.target.classList.remove("weapon");
   }
 
   //! Sinon on présente les positions possibles pour le joueur suivant
@@ -164,19 +167,24 @@ document.querySelector("#gameboard").addEventListener("click", movePhase);
 
 //todo Il faut écouter un / des évènements pour savoir si le joueur courant attaque ou défend
 
-// Si le player a cliqué sur défendre il se met en mode défense
+//! Si le player a cliqué sur défendre il se met en mode défense
 document.querySelectorAll(".defense_p1, .defense_p2").forEach((defenseDiv) => {
-  defenseDiv.addEventListener("click", function (e) {
-    let current = getCurrentPlayer();
+  defenseDiv.addEventListener("click", function (event) {
+    const current = getCurrentPlayer();
+    const currentWeapon = players[current].currentWeapon.dmg;
+    const pv = players[current].pv;
+
+    //! on desactive le bouton attaque si le player courant à cliqué sur défense
     document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
       attackDiv.disabled = true;
       attackDiv.style.background = "grey";
-      console.log("bouton attaque " + attackDiv);
     });
-    current.mode = "defense";
-    current.totalDefense;
-    current.getHit;
-    console.log("players " + players.getHit);
+    console.log(current);
+    console.log(currentWeapon);
+    players[current].mode = "defense";
+
+    players[current].getHit;
+    players[current].totalDefense;
     document.querySelector(".life_point_p1").innerHTML = current.getHit;
 
     //todo Le joueur courant change (= currentPlayer = 1 || 0, afficher/cacher les boutons pour les joueurs)
@@ -186,12 +194,20 @@ document.querySelectorAll(".defense_p1, .defense_p2").forEach((defenseDiv) => {
 // Si le player a cliqué sur attaque on attaque l'adversaire
 document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
   attackDiv.addEventListener("click", function (event) {
+    const current = getCurrentPlayer();
+    //! on desactive le bouton défense si le player courant à cliqué sur attaque
+    document
+      .querySelectorAll(".defense_p1, .defense_p2")
+      .forEach((defenseDiv) => {
+        defenseDiv.disabled = true;
+        defenseDiv.style.background = "grey";
+      });
     // Si l'adversaire est en mode defense on lui inflige
-    players[currentPlayer].totalDmg - players[1].totalDefense;
+    current.totalDmg - players[1].totalDefense;
     //  et on supprime le mode defense de l'adversaire
-    players[currentPlayer].mode = "defense";
+    current.mode = "defense";
     // Sinon on lui inflige
-    players[currentPlayer].totalDmg;
+    current.totalDmg;
     // players[1].getHit
     // Si l'adversaire est mort on affiche le joueur courant en tant que vainqueur
     // Sinon le joueur courant change
