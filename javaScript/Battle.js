@@ -185,12 +185,9 @@ document.querySelectorAll(".defense_p1, .defense_p2").forEach((defenseDiv) => {
 
     players[current].getHit;
     players[current].totalDefense;
-<<<<<<< Updated upstream
+
     document.querySelector(".life_point_p1").innerHTML =
       players[current].getHit;
-=======
-    document.querySelector(".life_point_p1").innerHTML = current.getHit;
->>>>>>> Stashed changes
 
     //todo Le joueur courant change (= currentPlayer = 1 || 0, afficher/cacher les boutons pour les joueurs)
   });
@@ -200,10 +197,9 @@ document.querySelectorAll(".defense_p1, .defense_p2").forEach((defenseDiv) => {
 document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
   attackDiv.addEventListener("click", function (event) {
     const current = getCurrentPlayer();
-<<<<<<< Updated upstream
+
     //! on desactive le bouton défense si le player courant à cliqué sur attaque
-=======
->>>>>>> Stashed changes
+
     document
       .querySelectorAll(".defense_p1, .defense_p2")
       .forEach((defenseDiv) => {
