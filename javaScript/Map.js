@@ -93,7 +93,6 @@ class GameMap {
     if (bgImgSrc) {
       cell.style.backgroundImage = `url('${bgImgSrc}')`;
     }
-    // console.log(classList);
     return cell;
   }
 
@@ -134,7 +133,6 @@ class GameMap {
     // Sinon on ajoute l'item dans la cellule
     const cell = this.createCell(itemClass, itemBgImgSrc);
     cellWhereToPlace.appendChild(cell);
-    // console.log(cell);
     return { position: cellNumberWhereToPlace, div: cell };
   }
 
@@ -261,7 +259,6 @@ class GameMap {
         currentPlayer.position = Number(
           cell.substring(tiretIndex + 1, cell.length)
         );
-        console.log("current player position : ", currentPlayer.position);
       }
       //! on renseigne la ClassName avec possible
       if (cell.includes("possible")) {
@@ -297,7 +294,6 @@ class GameMap {
     // On part de la position du joueur en question
     const currentPlayer = this.players[currentPlayerIndex];
     const playerPosition = currentPlayer.position;
-    console.log(currentPlayerIndex);
     // On crée une liste qui contient les positions possibles
     const positionsAround = [
       playerPosition - 1, // la case du dessus

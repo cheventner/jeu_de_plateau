@@ -23,7 +23,6 @@ class Player {
 
   getHit(dmg) {
     this.pv = this.pv - dmg;
-    console.log(this.pv);
   }
 
   // On utilise une property get pour calculer l'atk totale basée sur la somme des armes obtenues
