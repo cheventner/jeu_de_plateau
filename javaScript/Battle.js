@@ -150,15 +150,14 @@ function movePhase(event) {
   if (enemy) {
     //! on supprime les cellules marquées comme possibles pour le joueur courant
     map.removePossibleCells();
+    //! on supprime les weapons de la map
+    map.deleteWeapons();
     //! on affiche les boutons  attaque et défense pour le joueur courant
     displayBtnAttkDef(current);
     //! on arrête d'écouter les évenements de déplacement
     document
       .querySelector("#gameboard")
       .removeEventListener("click", movePhase);
-    //! on supprime les weapons de la map
-    map.deleteWeaponDiv();
-    const isWeapon = event.target.classList.remove("weapon");
   } else {
     //! Sinon on présente les positions possibles pour le joueur suivant
     map.showAvailablePositionsForPlayer(current);

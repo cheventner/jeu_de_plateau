@@ -339,13 +339,14 @@ class GameMap {
     }
   }
 
-  //todo je suis en train de faire ça
-  //todo supprimer les weapons de la map
+  // Supprimer les weapons de la map
+  deleteWeapons() {
+    // On récupère la liste des éléments (= div) correspondants aux armes
+    // que l'on a conservé lors de l'appel a la fonction createWeapons
+    const weaponsDivs = this.weaponsItems.map(wi => wi.div);
 
-  deleteWeaponDiv() {
-    const weaponList = this.weaponsItems;
-    let weapon = document.querySelector(".weapon");
-    weapon = weapon.remove(weapon);
+    // Pour chaque élément de la liste on le supprime du DOM
+    // https://developer.mozilla.org/fr/docs/orphaned/Web/API/ChildNode/remove
+    weaponsDivs.forEach(div => div.remove());
   }
-  //todo FIN
 }
