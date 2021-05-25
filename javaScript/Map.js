@@ -184,8 +184,8 @@ class GameMap {
       return isOnLine && pos > 0 && pos <= this.cellsCount;
     };
 
-    //! On vérifie que la cellule n'est pas un obstacle
-    const isObstacle = (pos) => this.obstaclesPositions.includes(pos);
+    //! On vérifie que la cellule n'est pas un obstacle ou un joueur (considéré comme un obstacle)
+    const isObstacle = (pos) => this.obstaclesPositions.includes(pos) || this.players.map(p => p.position).includes(pos);
 
     //! On compile les positions possible autour du joueur courant
     const positions = [];
