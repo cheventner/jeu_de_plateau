@@ -143,6 +143,7 @@ function movePhase(event) {
   //! c'est au joueur suivant de joueur
   nextPlayerToPlay(current);
   current = getCurrentPlayer();
+
   map.createInformationPlayer(current);
 
   //! Si il s'est arrêté sur une cellule adjacente à un autre player on passe en mode combat
@@ -170,28 +171,33 @@ document.querySelector("#gameboard").addEventListener("click", movePhase);
 //! Si le player a cliqué sur défendre il se met en mode défense
 document.querySelectorAll(".defense_p1, .defense_p2").forEach((defenseDiv) => {
   defenseDiv.addEventListener("click", function (event) {
-    const current = getCurrentPlayer();
+    let current = getCurrentPlayer();
     const currentWeapon = players[current].currentWeapon.dmg;
     const pv = players[current].pv;
+    const mode = players[current].mode;
 
-    //! on desactive le bouton attaque si le player courant à cliqué sur défense
+    //! on désactive le bouton attaque
     document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
       attackDiv.disabled = true;
       attackDiv.style.background = "grey";
     });
+
     console.log(current);
     console.log(currentWeapon);
-    players[current].mode = "defense";
+    console.log(mode);
 
     players[current].getHit;
     players[current].totalDefense;
 
-    document.querySelector(".life_point_p1").innerHTML =
-      players[current].getHit;
+    document.querySelector(".life_point_p1").innerHTML = current.getHit;
 
     //todo Le joueur courant change (= currentPlayer = 1 || 0, afficher/cacher les boutons pour les joueurs)
   });
+  nextPlayerToPlay();
+  getCurrentPlayer();
 });
+
+//! c'est au joueur suivant de joueur
 
 // Si le player a cliqué sur attaque on attaque l'adversaire
 document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
@@ -199,7 +205,6 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
     const current = getCurrentPlayer();
 
     //! on desactive le bouton défense si le player courant à cliqué sur attaque
-
     document
       .querySelectorAll(".defense_p1, .defense_p2")
       .forEach((defenseDiv) => {

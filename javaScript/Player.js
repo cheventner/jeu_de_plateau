@@ -10,7 +10,7 @@ class Player {
     this.abilityToMove = abilityToMove; // capacité à se deplacer 3 cases
     this.stepsCount = abilityToMove; // 3 --> 2 --> 1 -- > 0 reset on repart à --> 2
     this.turnToPlay = turnToPlay; // tourner pour jouer  true --> true --> false
-    this.mode = [];
+    this.mode = "defense";
   }
 
   addWeapon(weapon) {
@@ -23,7 +23,6 @@ class Player {
 
   getHit(dmg) {
     this.pv = this.pv - dmg;
-    console.log(this.pv);
   }
 
   // On utilise une property get pour calculer l'atk totale basée sur la somme des armes obtenues
