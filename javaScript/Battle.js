@@ -185,7 +185,8 @@ document.querySelectorAll(".defense_p1, .defense_p2").forEach((defenseDiv) => {
 
     players[current].getHit;
     players[current].totalDefense;
-    document.querySelector(".life_point_p1").innerHTML = current.getHit;
+    document.querySelector(".life_point_p1").innerHTML =
+      players[current].getHit;
 
     //todo Le joueur courant change (= currentPlayer = 1 || 0, afficher/cacher les boutons pour les joueurs)
   });
