@@ -10,7 +10,7 @@ class Player {
     this.abilityToMove = abilityToMove; // capacité à se deplacer 3 cases
     this.stepsCount = abilityToMove; // 3 --> 2 --> 1 -- > 0 reset on repart à --> 2
     this.turnToPlay = turnToPlay; // tourner pour jouer  true --> true --> false
-    this.mode = "defense";
+    this.defense = false;
   }
 
   addWeapon(weapon) {
@@ -22,7 +22,12 @@ class Player {
   }
 
   getHit(dmg) {
-    this.pv = this.pv - dmg;
+    if (this.defense === true) {
+      this.pv -= dmg - this.totalDefense;
+      this.defense = false;
+    } else {
+      this.pv -= dmg;
+    }
   }
 
   // On utilise une property get pour calculer l'atk totale basée sur la somme des armes obtenues
@@ -46,12 +51,4 @@ class Player {
   get isCurrentPlayer() {
     return this.turnToPlay === true;
   }
-
-  attack(opposingPlayerPv) {
-    let currentPlayer = getCurrentPlayer();
-    let dmgWeaponCurrentPlayer = players[currentPlayer].currentWeapon.dmg;
-    opposingPlayerPv = players[currentPlayer].pv;
-  }
 }
-
-// affiche les informations de l'arme portée par le joueur courant

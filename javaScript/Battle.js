@@ -220,10 +220,10 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
     let dmg = players[currentPlayer].totalDmg;
     //! on récupère l'autre joueur
     let enemy = map.getEnemyNextToPlayer(currentPlayer);
-    let enemyPv = enemy.getHit;
 
-    console.log(enemyPv);
-    //! on désactive le bouton défense si le player courant à cliqué sur attaque
+    //! le joueur attaque, il n'est donc pas en mode défense
+    players[currentPlayer].defense = false;
+    //! on désactive le bouton défense pour le player courant
     document
       .querySelectorAll(".defense_p1, .defense_p2")
       .forEach((defenseDiv) => {
@@ -233,12 +233,24 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
     //! on vérifie que l'autre joueur n'est pas mort
     for (var i = 0; i > 0; i++) {}
     // Si l'adversaire est en mode defense on lui inflige
-    players[currentPlayer].totalDmg - players[0].totalDefense;
+    enemy.getHit(dmg);
+    console.log(enemy.pv);
+    //todo on met à jour les points de vie dans le HTML
+    document
+      .querySelectorAll(".life_point_p1, life_point_p2")
+      .forEach((lifePoint) => {
+        lifePoint.innerHTML = "Points de vie: " + enemy.pv;
+      });
+    // document.querySelectorAll(".life_point_p1, .life_point_p2").innerHTML =
+    //   enemy.pv;
+    //todo on vérifie si l'adversaire est mort : on utilise enenmy.pv pour vérifier si c'est > 0
+    // todo s'il n'est pas mort c'est a l 'autre de jouer : créer méthode nextPlayerToAttack qui appelle nextPlayerToPlay, re récupère le current player et
+    //todo appelle ensuite displayBtnAttDef
 
     //  et on supprime le mode defense de l'adversaire
     // nextPlayerToFight();
     // Sinon on lui inflige
-    currentPlayer.totalDmg;
+
     // players[1].getHit
     // Si l'adversaire est mort on affiche le joueur courant en tant que vainqueur
     // Sinon le joueur courant change
