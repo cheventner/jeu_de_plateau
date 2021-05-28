@@ -4,7 +4,7 @@ class Player {
   constructor(imgSrc, abilityToMove, turnToPlay = false) {
     this.name = "";
     this.imgSrc = imgSrc;
-    this.weapons = [];
+    this.weapons = []; // tableau des armes si le joueur possède plusieurs armes (évolution)
     this.pv = 100;
     this.position; // position des joueurs 52 --> 53 -->
     this.abilityToMove = abilityToMove; // capacité à se deplacer 3 cases
@@ -46,4 +46,12 @@ class Player {
   get isCurrentPlayer() {
     return this.turnToPlay === true;
   }
+
+  attack(opposingPlayerPv) {
+    let currentPlayer = getCurrentPlayer();
+    let dmgWeaponCurrentPlayer = players[currentPlayer].currentWeapon.dmg;
+    opposingPlayerPv = players[currentPlayer].pv;
+  }
 }
+
+// affiche les informations de l'arme portée par le joueur courant

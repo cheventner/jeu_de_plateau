@@ -8,7 +8,7 @@ class GameMap {
     if (!players || players.length < 2) throw new Error("Cannot play alone");
     this.players = players;
     this.weapons = WEAPONS.filter((w) => w.dmg !== 10).map((w) =>
-      Object.assign({}, w),
+      Object.assign({}, w)
     );
     this.obstaclesPositions = [];
     this.weaponsItems = [];
@@ -76,7 +76,7 @@ class GameMap {
         position - 1,
         position,
         position + 1,
-        position + this.size,
+        position + this.size
       );
       player.div = div;
     }
@@ -109,13 +109,13 @@ class GameMap {
       return this.tryToPlaceItem(
         itemClass,
         itemBgImgSrc,
-        listOfPositionToExclude,
+        listOfPositionToExclude
       );
     }
 
     // On récupére l'élément HTML correspondant
     const cellWhereToPlace = this.gameboard.querySelector(
-      `div.cellnumber-${cellNumberWhereToPlace}`,
+      `div.cellnumber-${cellNumberWhereToPlace}`
     );
 
     // On vérifie si la cellule contient déjà quelque chose
@@ -127,7 +127,7 @@ class GameMap {
       return this.tryToPlaceItem(
         itemClass,
         itemBgImgSrc,
-        listOfPositionToExclude,
+        listOfPositionToExclude
       );
     }
     // Sinon on ajoute l'item dans la cellule
@@ -166,12 +166,12 @@ class GameMap {
       if (checkIfSameLine) {
         //! On récupére le parent (div.line) de la cellule courante
         const currentParent = this.gameboard.querySelector(
-          `div.cellnumber-${currentPlayerPosition}`,
+          `div.cellnumber-${currentPlayerPosition}`
         ).parentNode;
 
         //! On essaye de récupérer la cellule voulue
         const wantedPosition = this.gameboard.querySelector(
-          `div.cellnumber-${pos}`,
+          `div.cellnumber-${pos}`
         );
         //! On considére qu'on est sur la meme ligne si la cellule voulue existe et que la ligne parente est la même
         isOnLine =
@@ -259,7 +259,7 @@ class GameMap {
       if (cell.includes("cellnumber")) {
         let tiretIndex = cell.indexOf("-");
         currentPlayer.position = Number(
-          cell.substring(tiretIndex + 1, cell.length),
+          cell.substring(tiretIndex + 1, cell.length)
         );
       }
       //! on renseigne la ClassName avec possible
@@ -274,7 +274,7 @@ class GameMap {
   //! Remplacement de l'arme
   replaceWeaponDiv(weaponDivToReplace, playerWeapon) {
     const weaponItem = this.weaponsItems.find(
-      (wi) => wi.div === weaponDivToReplace,
+      (wi) => wi.div === weaponDivToReplace
     );
     const parent = weaponItem.div.parentNode;
     const weaponReplaced = Object.assign({}, weaponItem.weapon);
@@ -291,7 +291,7 @@ class GameMap {
     return weaponReplaced;
   }
 
-  //! Déterminer ennemi grâce à "currentPlayerIndex"
+  //! On récupère la position de l'ennemi à partir de "currentPlayerIndex"
   getEnemyNextToPlayer(currentPlayerIndex) {
     // On part de la position du joueur en question
     const currentPlayer = this.players[currentPlayerIndex];
@@ -306,7 +306,8 @@ class GameMap {
 
     // On crée une liste des autres joueurs
     const otherPlayers = this.players.filter((p) => p !== currentPlayer);
-
+    console.log(currentPlayer);
+    console.log(otherPlayers);
     // On retourne le résultat de la fonction .find qui renvoie l'élément trouvé ou null s'il n'est pas trouvé
     // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/find
     return otherPlayers.find((p) => positionsAround.includes(p.position));
