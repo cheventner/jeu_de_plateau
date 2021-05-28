@@ -218,8 +218,10 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
     let currentPlayer = getCurrentPlayer();
     //! on récupère les dommages du joueur courant
     let dmg = players[currentPlayer].totalDmg;
-    let enemyPv = map.getEnemyNextToPlayer(currentPlayer).getHit(dmg);
-    currentPlayer.mode = "attaque";
+    //! on récupère l'autre joueur
+    let enemy = map.getEnemyNextToPlayer(currentPlayer);
+    let enemyPv = enemy.getHit;
+
     console.log(enemyPv);
     //! on désactive le bouton défense si le player courant à cliqué sur attaque
     document
@@ -228,11 +230,13 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
         defenseDiv.disabled = true;
         defenseDiv.style.background = "grey";
       });
-
+    //! on vérifie que l'autre joueur n'est pas mort
+    for (var i = 0; i > 0; i++) {}
     // Si l'adversaire est en mode defense on lui inflige
+    players[currentPlayer].totalDmg - players[0].totalDefense;
 
     //  et on supprime le mode defense de l'adversaire
-
+    // nextPlayerToFight();
     // Sinon on lui inflige
     currentPlayer.totalDmg;
     // players[1].getHit
