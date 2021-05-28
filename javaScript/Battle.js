@@ -205,11 +205,19 @@ document.querySelectorAll(".defense_p1, .defense_p2").forEach((defenseDiv) => {
 
     //todo Le joueur courant change (= currentPlayer = 1 || 0, afficher/cacher les boutons pour les joueurs)
   });
+  //! c'est au joueur suivant de joueur
   nextPlayerToPlay();
   getCurrentPlayer();
 });
 
-//! c'est au joueur suivant de joueur
+//todo créer méthode nextPlayerToAttack qui appelle nextPlayerToPlay, re récupère le current player et
+//todo appelle ensuite displayBtnAttDef
+//! on initialise le joueur suivant ( player1 ou player2)
+function nextPlayerToAttack(currentPlayer) {
+  currentPlayer = getCurrentPlayer();
+  nextPlayerToPlay(currentPlayer);
+  displayBtnAttkDef(currentPlayer);
+}
 
 // Si le player a cliqué sur attaque on attaque l'adversaire
 document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
@@ -223,28 +231,29 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
 
     //! le joueur attaque, il n'est donc pas en mode défense
     players[currentPlayer].defense = false;
-    //! on désactive le bouton défense pour le player courant
-    document
-      .querySelectorAll(".defense_p1, .defense_p2")
-      .forEach((defenseDiv) => {
-        defenseDiv.disabled = true;
-        defenseDiv.style.background = "grey";
-      });
-    //! on vérifie que l'autre joueur n'est pas mort
-    for (var i = 0; i > 0; i++) {}
-    // Si l'adversaire est en mode defense on lui inflige
+
+    //! Si l'adversaire est en mode defense on lui inflige
     enemy.getHit(dmg);
-    console.log(enemy.pv);
-    //todo on met à jour les points de vie dans le HTML
-    document
-      .querySelectorAll(".life_point_p1, life_point_p2")
-      .forEach((lifePoint) => {
-        lifePoint.innerHTML = "Points de vie: " + enemy.pv;
-      });
+
+    //! on met à jour les points de vie dans les balises HTML
+    if (currentPlayer === 0) {
+      document.querySelector(".life_point_p2").innerHTML =
+        "Points de vie : " + enemy.pv;
+    } else if (currentPlayer === 1) {
+      document.querySelector(".life_point_p1").innerHTML =
+        "Points de vie : " + enemy.pv;
+    }
+
     // document.querySelectorAll(".life_point_p1, .life_point_p2").innerHTML =
     //   enemy.pv;
     //todo on vérifie si l'adversaire est mort : on utilise enenmy.pv pour vérifier si c'est > 0
-    // todo s'il n'est pas mort c'est a l 'autre de jouer : créer méthode nextPlayerToAttack qui appelle nextPlayerToPlay, re récupère le current player et
+    if (enemy.pv === 0) {
+      alert("perdu");
+    } else if (enemy.pv > 0) {
+      nextPlayerToAttack(currentPlayer);
+    }
+
+    //todo s'il n'est pas mort c'est a l 'autre de jouer : créer méthode nextPlayerToAttack qui appelle nextPlayerToPlay, re récupère le current player et
     //todo appelle ensuite displayBtnAttDef
 
     //  et on supprime le mode defense de l'adversaire

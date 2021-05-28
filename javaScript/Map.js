@@ -306,8 +306,7 @@ class GameMap {
 
     // On crée une liste des autres joueurs
     const otherPlayers = this.players.filter((p) => p !== currentPlayer);
-    console.log(currentPlayer);
-    console.log(otherPlayers);
+
     // On retourne le résultat de la fonction .find qui renvoie l'élément trouvé ou null s'il n'est pas trouvé
     // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/find
     return otherPlayers.find((p) => positionsAround.includes(p.position));
