@@ -221,7 +221,7 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
 
     //! Si l'adversaire est en mode defense on lui inflige
     enemy.getHit(dmg);
-    console.log(enemy.getHit(dmg));
+
     //! on met à jour les points de vie dans les balises HTML
     if (currentPlayer === 0) {
       document.querySelector(".life_point_p2").innerHTML =
