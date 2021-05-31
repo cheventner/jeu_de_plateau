@@ -237,8 +237,5 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
     } else if (enemy.pv > 0) {
       nextPlayerToAttack(currentPlayer);
     }
-
-    //todo s'il n'est pas mort c'est a l 'autre de jouer : créer méthode nextPlayerToAttack qui appelle nextPlayerToPlay, re récupère le current player et
-    //todo appelle ensuite displayBtnAttDef
   });
 });
