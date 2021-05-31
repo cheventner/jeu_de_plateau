@@ -45,7 +45,7 @@ class Player {
   // On obtient la défense totale basée sur la moitiée de l'atk totale
   get totalDefense() {
     // Voir Maths.abs (arrondir)
-    return this.totalDmg / 2;
+    return Math.round(this.totalDmg / 2);
   }
 
   get isCurrentPlayer() {

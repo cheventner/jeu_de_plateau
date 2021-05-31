@@ -181,43 +181,30 @@ function movePhase(event) {
 map.showAvailablePositionsForPlayer(getCurrentPlayer());
 document.querySelector("#gameboard").addEventListener("click", movePhase);
 
+//todo créer méthode nextPlayerToAttack qui appelle nextPlayerToPlay, re récupère le current player et
+//todo appelle ensuite displayBtnAttDef
+//! on initialise le joueur suivant ( player1 ou player2)
+function nextPlayerToAttack(currentPlayer) {
+  nextPlayerToPlay(currentPlayer);
+  currentPlayer = getCurrentPlayer();
+  displayBtnAttkDef(currentPlayer);
+}
 //todo Il faut écouter un / des évènements pour savoir si le joueur courant attaque ou défend
 
 //! Si le player a cliqué sur défendre il se met en mode défense
 document.querySelectorAll(".defense_p1, .defense_p2").forEach((defenseDiv) => {
   defenseDiv.addEventListener("click", function (e) {
-    let current = getCurrentPlayer();
-    // const currentWeapon = players[current].currentWeapon.dmg;
-    // const pv = players[current].pv;
-    // const mode = players[current].mode;
+    let currentPlayer = getCurrentPlayer();
+    players[currentPlayer].defense = true;
 
-    //! on désactive le bouton attaque
-    document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
-      attackDiv.disabled = true;
-      attackDiv.style.background = "grey";
-    });
+    console.log(currentPlayer);
+    //todo Le joueur courant change
 
-    players[current].getHit;
-    players[current].totalDefense;
-    // Si l'adversaire est en mode defense on lui inflige
-    players[currentPlayer].totalDmg - players[0].totalDefense;
-    document.querySelector(".life_point_p1").innerHTML = current.getHit;
-
-    //todo Le joueur courant change (= currentPlayer = 1 || 0, afficher/cacher les boutons pour les joueurs)
+    nextPlayerToAttack(currentPlayer);
   });
-  //! c'est au joueur suivant de joueur
-  nextPlayerToPlay();
-  getCurrentPlayer();
-});
 
-//todo créer méthode nextPlayerToAttack qui appelle nextPlayerToPlay, re récupère le current player et
-//todo appelle ensuite displayBtnAttDef
-//! on initialise le joueur suivant ( player1 ou player2)
-function nextPlayerToAttack(currentPlayer) {
-  currentPlayer = getCurrentPlayer();
-  nextPlayerToPlay(currentPlayer);
-  displayBtnAttkDef(currentPlayer);
-}
+  //! c'est au joueur suivant de joueur
+});
 
 // Si le player a cliqué sur attaque on attaque l'adversaire
 document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
@@ -234,7 +221,7 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
 
     //! Si l'adversaire est en mode defense on lui inflige
     enemy.getHit(dmg);
-
+    console.log(enemy.getHit(dmg));
     //! on met à jour les points de vie dans les balises HTML
     if (currentPlayer === 0) {
       document.querySelector(".life_point_p2").innerHTML =
@@ -244,26 +231,14 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
         "Points de vie : " + enemy.pv;
     }
 
-    // document.querySelectorAll(".life_point_p1, .life_point_p2").innerHTML =
-    //   enemy.pv;
     //todo on vérifie si l'adversaire est mort : on utilise enenmy.pv pour vérifier si c'est > 0
-    if (enemy.pv === 0) {
-      alert("perdu");
+    if (enemy.pv <= 0) {
+      alert("Le gagnant est " + players[currentPlayer].name);
     } else if (enemy.pv > 0) {
       nextPlayerToAttack(currentPlayer);
     }
 
     //todo s'il n'est pas mort c'est a l 'autre de jouer : créer méthode nextPlayerToAttack qui appelle nextPlayerToPlay, re récupère le current player et
     //todo appelle ensuite displayBtnAttDef
-
-    //  et on supprime le mode defense de l'adversaire
-    // nextPlayerToFight();
-    // Sinon on lui inflige
-
-    // players[1].getHit
-    // Si l'adversaire est mort on affiche le joueur courant en tant que vainqueur
-    // Sinon le joueur courant change
-    //  currentPlayer = 1 || 0,
-    //  afficher/cacher les boutons pour les joueurs)
   });
 });
