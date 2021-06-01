@@ -10,11 +10,38 @@ const players = [
 // On récupére uniquement les armes ayant 10 d'atk
 // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 const baseWeapons = WEAPONS.filter((w) => w.dmg === 10);
-// On ajoute l'arme par défaut en effectuant un clonage de l'objet pour éviter les effets de bords en cas de modifications de WEAPONS
+//! On ajoute l'arme par défaut en effectuant un clonage de l'objet pour éviter les effets de bords en cas de modifications de WEAPONS
 players.forEach((player, index) => {
   player.addWeapon(Object.assign({}, baseWeapons[index]));
 });
 
+//! Variable pour le paramètrage de la fenetre pop-up
+const swalFire = (html) => {
+  swal.fire({
+    title: "Le gagnant est :",
+    showClass: {
+      popup: "animate__animated animate__fadeInDown",
+    },
+    hideClass: {
+      popup: "animate__animated animate__fadeOutUp",
+    },
+    type: "success",
+    html,
+    showCloseButton: true,
+    showCancelButton: true,
+    focusConfirm: false,
+    confirmButtonText: "Recommencer",
+    confirmButtonColor: "#686666",
+    confirmButtonAriaLabel: "Recommencer",
+    cancelButtonText: "Quitter",
+    cancelButtonAriaLabel: "Quitter",
+  });
+  // .then((response) => {
+  //   if (response.isConfirmed) {
+  //     btnPlay.click();
+  //   }
+  // });
+};
 //! on inscrit le nom du joueur dans la balise input
 let inputP1 = document.querySelector(".input-name_p1");
 let namep1 = document.querySelector(".name_player1");
@@ -33,7 +60,7 @@ inputP2.addEventListener("input", function (e) {
   players[1].name = playerName;
 });
 
-//! quand on clique surt le bouton jouer, les règles du jeu se masquent
+//! quand on clique sur le bouton jouer, les règles du jeu se masquent
 let btnPlay = document.querySelector(".start_game");
 
 btnPlay.addEventListener("click", () => {
@@ -69,7 +96,7 @@ function nextPlayerToPlay(current) {
     players[1].turnToPlay = false;
   }
 }
-// initialise le joueur suivant et réinitialise le nombre de pas possible pour le joueur qui vient de finir son tour
+//! initialise le joueur suivant et réinitialise le nombre de pas possible pour le joueur qui vient de finir son tour
 function nextPlayerToMove(current) {
   nextPlayerToPlay(current);
   if (current === 0) {
@@ -79,7 +106,7 @@ function nextPlayerToMove(current) {
   }
 }
 
-// affiche les boutons d'actions au joueur courant
+//! affiche les boutons d'actions au joueur courant
 function displayBtnAttkDef(current) {
   if (current === 0) {
     // On affiche les boutons pour le joueur 1
@@ -189,24 +216,22 @@ function nextPlayerToAttack(currentPlayer) {
   currentPlayer = getCurrentPlayer();
   displayBtnAttkDef(currentPlayer);
 }
-//todo Il faut écouter un / des évènements pour savoir si le joueur courant attaque ou défend
 
+//todo Il faut écouter un / des évènements pour savoir si le joueur courant attaque ou défend
 //! Si le player a cliqué sur défendre il se met en mode défense
 document.querySelectorAll(".defense_p1, .defense_p2").forEach((defenseDiv) => {
   defenseDiv.addEventListener("click", function (e) {
     let currentPlayer = getCurrentPlayer();
     players[currentPlayer].defense = true;
 
-    console.log(currentPlayer);
-    //todo Le joueur courant change
-
+    //! Le joueur courant change
     nextPlayerToAttack(currentPlayer);
   });
 
   //! c'est au joueur suivant de joueur
 });
 
-// Si le player a cliqué sur attaque on attaque l'adversaire
+//! Si le player a cliqué sur attaque on attaque l'adversaire
 document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
   attackDiv.addEventListener("click", function (e) {
     //! on récupère le joueur courant
@@ -221,7 +246,7 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
 
     //! Si l'adversaire est en mode defense on lui inflige
     enemy.getHit(dmg);
-
+    console.log(enemy.getHit(dmg));
     //! on met à jour les points de vie dans les balises HTML
     if (currentPlayer === 0) {
       document.querySelector(".life_point_p2").innerHTML =
@@ -231,9 +256,11 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
         "Points de vie : " + enemy.pv;
     }
 
-    //todo on vérifie si l'adversaire est mort : on utilise enenmy.pv pour vérifier si c'est > 0
+    //! on vérifie si l'adversaire est mort
     if (enemy.pv <= 0) {
-      alert("Le gagnant est " + players[currentPlayer].name);
+      const winner = players[currentPlayer].name;
+      console.log(winner);
+      swalfire(winner);
     } else if (enemy.pv > 0) {
       nextPlayerToAttack(currentPlayer);
     }

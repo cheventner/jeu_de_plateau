@@ -36,16 +36,15 @@ class Player {
     if (!this.weapons.length) return 0;
     return this.weapons.reduce((prev, current) => prev + current.dmg, 0);
   }
+  //! On obtient la défense totale basée sur la moitiée de l'atk totale
+  get totalDefense() {
+    // Voir Maths.abs (arrondir)
+    return Math.round(this.totalDmg / 2);
+  }
 
   get currentWeapon() {
     if (!this.weapons.length) return null;
     return this.weapons[0];
-  }
-
-  // On obtient la défense totale basée sur la moitiée de l'atk totale
-  get totalDefense() {
-    // Voir Maths.abs (arrondir)
-    return Math.round(this.totalDmg / 2);
   }
 
   get isCurrentPlayer() {
