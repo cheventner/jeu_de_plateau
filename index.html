@@ -54,11 +54,13 @@
       <div class="class-name">
         <div class="name_p1">
           <label for="label-name_p1"></label>
-          <input class="input-name_p1" id="inputnamep1" placeholder="Nom JOUEUR 1" type="text"></input>
+          <input class="input-name_p1" id="inputnamep1" value="Joueur 1" placeholder="Nom JOUEUR 1" type="text"></input>
+          <button class="edit-btn" onclick="document.querySelector('#inputnamep1').select()">Modifier</button>
         </div>
         <div class="name_p2">
           <label for="label-name_p2"></label>
-          <input class="input-name_p2" id="inputnamep2" placeholder="Nom JOUEUR 2" type="text"></input>
+          <input class="input-name_p2" id="inputnamep2" value="Joueur 2" placeholder="Nom JOUEUR 2" type="text"></input>
+          <button class="edit-btn" onclick="document.querySelector('#inputnamep2').select()">Modifier</button>
         </div>
 
       </div>
@@ -103,7 +105,7 @@
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- SweetAlert -->
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.6/dist/sweetalert2.all.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
   <script async src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -114,6 +116,7 @@
   <script src="./javaScript/Player.js"></script>
   <script src="./javaScript/Map.js"></script>
   <script src="./javaScript/Battle.js"></script>
+  <script src="./javaScript/Index.js"></script>
 </body>
 
 </html>

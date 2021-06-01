@@ -13,6 +13,10 @@ class Player {
     this.defense = false;
   }
 
+  revive() {
+    this.pv = 100;
+  }
+
   addWeapon(weapon) {
     this.weapons.push(weapon);
   }
@@ -22,12 +26,17 @@ class Player {
   }
 
   getHit(dmg) {
+    let dmgToTake = dmg;
     if (this.defense === true) {
-      const reduceDmg = this.totalDefense;
-      this.pv -= reduceDmg - this.totalDefense;
+      // lorsque le joueur est en mode défense il prend 50% de dégat de moins
+      dmgToTake = dmg / 2;
       this.defense = false;
+    }
+    // si les points de vie descendent en dessous de zero, on les garde a zéro (pour l'affichage)
+    if (this.pv - dmgToTake < 0) {
+      this.pv = 0;
     } else {
-      this.pv -= dmg;
+      this.pv -= dmgToTake;
     }
   }
 
@@ -36,12 +45,6 @@ class Player {
   get totalDmg() {
     if (!this.weapons.length) return 0;
     return this.weapons.reduce((prev, current) => prev + current.dmg, 0);
-  }
-  //! On obtient la défense totale basée sur la moitiée de l'atk totale
-  get totalDefense() {
-    // Voir Maths.abs (arrondir)
-    // return Math.round(this.totalDmg / 2);
-    return this.totalDmg / 2;
   }
 
   get currentWeapon() {

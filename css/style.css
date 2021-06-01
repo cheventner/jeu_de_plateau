@@ -78,6 +78,14 @@ body {
   cursor: pointer;
 }
 
+.edit-btn {
+  padding: 2px;
+  background: linear-gradient(to right, #e45f1d, 50%, #e9a13d);
+  color: #fff;
+  font-family: "Eagle Lake", cursive;
+  border-radius: 10px;
+}
+
 /* pour Chrome */
 ::-webkit-input-placeholder {
   color: #fff;
