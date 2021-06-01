@@ -17,30 +17,35 @@ players.forEach((player, index) => {
 
 //! Variable pour le paramètrage de la fenetre pop-up
 const swalFire = (html) => {
-  swal.fire({
-    title: "Le gagnant est :",
-    showClass: {
-      popup: "animate__animated animate__fadeInDown",
-    },
-    hideClass: {
-      popup: "animate__animated animate__fadeOutUp",
-    },
-    type: "success",
-    html,
-    showCloseButton: true,
-    showCancelButton: true,
-    focusConfirm: false,
-    confirmButtonText: "Recommencer",
-    confirmButtonColor: "#686666",
-    confirmButtonAriaLabel: "Recommencer",
-    cancelButtonText: "Quitter",
-    cancelButtonAriaLabel: "Quitter",
-  });
-  // .then((response) => {
-  //   if (response.isConfirmed) {
-  //     btnPlay.click();
-  //   }
-  // });
+  swal
+    .fire({
+      title: "Winner is :",
+      imageUrl: "./img/winner.png",
+      imageWidth: 400,
+      background: "linear-gradient(#50245d, #ab4d60, 70%, #e45f1d, #e9a13d)",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+      type: "success",
+      html,
+      showCloseButton: true,
+      showCancelButton: true,
+      cancelButtonColor: "#50245d",
+      focusConfirm: false,
+      confirmButtonText: "Rejouer",
+      confirmButtonColor: "#50245d",
+      confirmButtonAriaLabel: "Rejouer",
+      cancelButtonText: "Quitter",
+      cancelButtonAriaLabel: "Quitter",
+    })
+    .then((response) => {
+      if (response.isConfirmed) {
+        document.location.reload();
+      }
+    });
 };
 //! on inscrit le nom du joueur dans la balise input
 let inputP1 = document.querySelector(".input-name_p1");
@@ -245,6 +250,7 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
     players[currentPlayer].defense = false;
 
     //! Si l'adversaire est en mode defense on lui inflige
+    console.log(players[currentPlayer].totalDefense);
     enemy.getHit(dmg);
     console.log(enemy.getHit(dmg));
     //! on met à jour les points de vie dans les balises HTML
@@ -260,7 +266,7 @@ document.querySelectorAll(".attack_p1, .attack_p2").forEach((attackDiv) => {
     if (enemy.pv <= 0) {
       const winner = players[currentPlayer].name;
       console.log(winner);
-      swalfire(winner);
+      swalFire(winner);
     } else if (enemy.pv > 0) {
       nextPlayerToAttack(currentPlayer);
     }

@@ -4,7 +4,7 @@ class Player {
   constructor(imgSrc, abilityToMove, turnToPlay = false) {
     this.name = "";
     this.imgSrc = imgSrc;
-    this.weapons = []; // tableau des armes si le joueur possède plusieurs armes (évolution)
+    this.weapons = []; // tableau des armes (pour évolution possible) si on souhaite que le joueur possède plusieurs armes
     this.pv = 100;
     this.position; // position des joueurs 52 --> 53 -->
     this.abilityToMove = abilityToMove; // capacité à se deplacer 3 cases
@@ -23,7 +23,8 @@ class Player {
 
   getHit(dmg) {
     if (this.defense === true) {
-      this.pv -= dmg - this.totalDefense;
+      const reduceDmg = this.totalDefense;
+      this.pv -= reduceDmg - this.totalDefense;
       this.defense = false;
     } else {
       this.pv -= dmg;
@@ -39,7 +40,8 @@ class Player {
   //! On obtient la défense totale basée sur la moitiée de l'atk totale
   get totalDefense() {
     // Voir Maths.abs (arrondir)
-    return Math.round(this.totalDmg / 2);
+    // return Math.round(this.totalDmg / 2);
+    return this.totalDmg / 2;
   }
 
   get currentWeapon() {
