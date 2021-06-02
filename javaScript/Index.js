@@ -28,12 +28,13 @@ btnPlay.addEventListener("click", () => {
   battle.start();
 });
 
+// fenêtre d'affichage du gagnant
 function showWinner(html) {
   swal
     .fire({
       title: "Winner is :",
       imageUrl: "./img/winner.png",
-      imageWidth: 400,
+      imageWidth: 00,
       background: "linear-gradient(#50245d, #ab4d60, 70%, #e45f1d, #e9a13d)",
       showClass: {
         popup: "animate__animated animate__fadeInDown",
@@ -53,6 +54,8 @@ function showWinner(html) {
       cancelButtonText: "Quitter",
       cancelButtonAriaLabel: "Quitter",
     })
+    //si on clique sur rejouer, on relance la création de la map, on remet les pv à 100 pour chaque player,
+    // on remet les armes des players par défaut, on remet les informations des players dans le HTML
     .then((response) => {
       if (response.isConfirmed) {
         battle.reload();
@@ -64,12 +67,34 @@ function showWinner(html) {
     });
 }
 
+// fenêtre d'information lorsque la battle commence
+function showFightBegins(html) {
+  swal.fire({
+    title: "Le combat commence ",
+    imageUrl: "./img/battle.png",
+    imageWidth: 300,
+    background: "linear-gradient(#50245d, #ab4d60, 70%, #e45f1d, #e9a13d)",
+    showClass: {
+      popup: "animate__animated animate__fadeInDown",
+    },
+    hideClass: {
+      popup: "animate__animated animate__fadeOutUp",
+    },
+    timer: 3000,
+
+    html,
+    showCloseButton: false,
+    showCancelButton: false,
+    focusConfirm: false,
+    showConfirmButton: false,
+  });
+}
 const players = [
   new Player("./img/avatar/sorcier_avatar.png", 3, true),
   new Player("./img/avatar/goblin_attack.png", 3),
 ];
+
 // On récupére uniquement les armes ayant 10 d'atk
-// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 const baseWeapons = WEAPONS.filter((w) => w.dmg === 10);
 
 function assignDefaultWeapons() {
@@ -78,6 +103,7 @@ function assignDefaultWeapons() {
     player.changeWeapon(Object.assign({}, baseWeapons[index]));
   });
 }
+
 // on assigne aux joueurs leurs armes par défaut
 assignDefaultWeapons();
 const battle = new Battle(players, showWinner);

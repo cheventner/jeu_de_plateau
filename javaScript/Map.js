@@ -1,5 +1,5 @@
 class GameMap {
-  constructor(container, size, players) {
+  constructor(container, size, players, nbObstacles) {
     this.gameboard = document.querySelector(container);
     if (!size || size < 3)
       throw new Error("Cannot have empty or too small map");
@@ -13,6 +13,7 @@ class GameMap {
     this.obstaclesPositions = [];
     this.weaponsItems = [];
     this.enemyPosition = [];
+    this.nbObstacles = nbObstacles;
   }
 
   get cellsCount() {
@@ -20,7 +21,7 @@ class GameMap {
     return this.size * this.size;
   }
 
-  // Fonction permettant de créer la grille et ses éléments
+  // Fonction permettant de créer la map, contenant la grille et ses éléments
   createMap() {
     this.createGrid();
     this.createObstacles();
@@ -44,7 +45,7 @@ class GameMap {
   }
 
   createObstacles() {
-    for (let i = 10; i > 0; i--) {
+    for (let i = this.nbObstacles; i > 0; i--) {
       const result = this.tryToPlaceItem("obstacle", "./img/floor/trou.png");
       this.obstaclesPositions.push(result.position);
     }
@@ -82,14 +83,14 @@ class GameMap {
     }
   }
 
-  // Fonction permettant de créer les div en HTML, utilisées pour créer le bg
+  // Fonction permettant de créer les div en HTML
   createCell(classList, bgImgSrc) {
     const cell = document.createElement("div");
     // On ajoute une classe à l'élément HTML
     if (classList) {
       cell.classList = classList;
     }
-    // On ajoute une image de fond à l'élément HTML
+    // On ajoute les images (weapons, players, obstacles) sur les divs
     if (bgImgSrc) {
       cell.style.backgroundImage = `url('${bgImgSrc}')`;
     }
@@ -308,7 +309,6 @@ class GameMap {
     const otherPlayers = this.players.filter((p) => p !== currentPlayer);
 
     // On retourne le résultat de la fonction .find qui renvoie l'élément trouvé ou null s'il n'est pas trouvé
-    // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/find
     return otherPlayers.find((p) => positionsAround.includes(p.position));
   }
 
@@ -319,7 +319,6 @@ class GameMap {
     const weaponsDivs = this.weaponsItems.map((wi) => wi.div);
 
     // Pour chaque élément de la liste on le supprime du DOM
-    // https://developer.mozilla.org/fr/docs/orphaned/Web/API/ChildNode/remove
     weaponsDivs.forEach((div) => div.remove());
   }
 }

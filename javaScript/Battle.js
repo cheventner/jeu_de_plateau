@@ -9,8 +9,7 @@ class Battle {
     this.btnDefenseP2 = document.querySelector(".defense_p2");
     this.createMap();
 
-    // Il faut écouter un / des évènements pour savoir si le joueur courant attaque ou défend
-
+    // on écoute un des évènements pour savoir si le joueur courant attaque ou défend
     //! Si le player a cliqué sur attaque on attaque l'adversaire
     [this.btnAttackP1, this.btnAttackP2].forEach((attackDiv) => {
       attackDiv.addEventListener("click", () => {
@@ -53,21 +52,22 @@ class Battle {
   }
 
   createMap() {
-    this.map = new GameMap("#gameboard", 10, this.players);
+    // paramètre1 = element HTML  2 = nombre de case 3 = players 4 = nombre d'obstacles
+    this.map = new GameMap("#gameboard", 13, this.players, 10);
   }
-
+  // on initialise le debut du jeu
   start() {
     this.map.createMap();
     this.map.showAvailablePositionsForPlayer(this.getCurrentPlayer());
     this.map.gameboard.addEventListener("click", this.movePhaseHandler);
   }
-
+  // on recharge la gameboard
   reload() {
     this.removeMap();
     this.createMap();
     this.start();
   }
-
+  // on vide la map lorsqu'on veut rejouer (suppression des div "possible" et div "weapon")
   removeMap() {
     const el = this.map.gameboard;
     while (el.firstChild) {
@@ -117,7 +117,7 @@ class Battle {
     if (isWeapon) {
       const weapon = this.map.replaceWeaponDiv(
         element,
-        currentPlayer.currentWeapon,
+        currentPlayer.currentWeapon
       );
       currentPlayer.changeWeapon(weapon);
       // On met à jour les informations de l'arme du joueur courant
@@ -147,6 +147,7 @@ class Battle {
       this.displayBtnAttkDef(current);
       //! on arrête d'écouter les évenements de déplacement
       this.map.gameboard.removeEventListener("click", this.movePhaseHandler);
+      showFightBegins();
     } else {
       //! Sinon on présente les positions possibles pour le joueur suivant
       this.map.showAvailablePositionsForPlayer(current);
@@ -159,7 +160,6 @@ class Battle {
   }
 
   // affiche les informations de l'arme portée par le joueur courant
-
   updateWeaponInformation(playerIndex) {
     const weapon = this.players[playerIndex].currentWeapon;
     let dmgDiv, nameDiv, imgDiv;
@@ -173,21 +173,21 @@ class Battle {
       nameDiv = ".weapon-name_p2";
       imgDiv = ".weapon-img_p2";
     }
-    document.querySelector(dmgDiv).innerHTML = "Dégâts: " + weapon.dmg;
-    document.querySelector(nameDiv).innerHTML = weapon.name;
-    document.querySelector(imgDiv).src = weapon.imgSrc;
+    // un peu de jquery !!!
+    $(dmgDiv).html("Dégâts: " + weapon.dmg);
+    $(nameDiv).html(weapon.name);
+    $(imgDiv).attr("src", weapon.imgSrc);
   }
 
+  // affiche les informations des pv
   updatePvInformation(playerIndex, pv) {
     if (playerIndex === 0) {
-      document.querySelector(".life_point_p2").innerHTML =
-        "Points de vie : " + pv;
+      $(".life_point_p2").html("Points de vie : " + pv);
     } else if (playerIndex === 1) {
-      document.querySelector(".life_point_p1").innerHTML =
-        "Points de vie : " + pv;
+      $(".life_point_p1").html("Points de vie : " + pv);
     }
   }
-
+  // on met le player à jour : information de l'arme et information des pv
   updatePlayersInformation() {
     this.players.forEach((player, index) => {
       this.updateWeaponInformation(index);
@@ -205,7 +205,7 @@ class Battle {
       this.players[1].turnToPlay = false;
     }
   }
-  //! initialise le joueur suivant et réinitialise le nombre de pas possible pour le joueur qui vient de finir son tour
+  //! on initialise le joueur suivant et réinitialise le nombre de pas possible pour le joueur qui vient de finir son tour
   nextPlayerToMove(current) {
     this.nextPlayerToPlay(current);
     if (current === 0) {

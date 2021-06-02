@@ -24,7 +24,6 @@ body,
 }
 .footer {
   grid-area: 4 / 1 / 5 / 4;
-  border: solid 2px green;
 }
 /*! FIN GRILLE PRINCIPALE */
 
