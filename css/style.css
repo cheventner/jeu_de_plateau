@@ -64,6 +64,7 @@ body {
     #e45f1d,
     #e9a13d
   );
+  padding-bottom: 10px;
 }
 .input-name_p1,
 .input-name_p2 {
@@ -110,18 +111,17 @@ input::placeholder {
 /*! GRILLE CONTENU DES JOUEURS */
 .box_p1,
 .box_p2 {
+  padding: 10px;
   justify-items: center;
-  margin-bottom: 1rem;
-  height: 800px;
+  height: auto;
   background: #fefff0;
   box-shadow: 5px 5px 10px #666660, -5px -5px 10px #fffefe;
 }
 
 .player1,
 .player2 {
-  margin-left: 5rem;
-  margin-right: 5rem;
-  height: 2rem;
+  display: flex;
+  justify-content: center;
 }
 
 .name_player1,
@@ -186,10 +186,17 @@ input::placeholder {
 .defense_p1,
 .defense_p2 {
   display: none;
-  margin-bottom: 50px;
 }
 
 /* !GRILLE CONTENU PLATEAU */
 .game-contain > #gameboard {
   align-content: center;
+}
+
+/*! Footer */
+footer {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

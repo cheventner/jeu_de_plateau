@@ -52,8 +52,8 @@ class Battle {
   }
 
   createMap() {
-    // paramètre1 = element HTML  2 = nombre de case 3 = players 4 = nombre d'obstacles
-    this.map = new GameMap("#gameboard", 13, this.players, 10);
+    // paramètre1 = element HTML / 2 = nombre de case / 3 = players / 4 = nombre d'obstacles
+    this.map = new GameMap("#gameboard", 10, this.players, 10);
   }
   // on initialise le debut du jeu
   start() {

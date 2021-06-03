@@ -20,7 +20,7 @@ body,
   display: none;
   grid-area: 3 / 1 / 4 / 4;
   display: none;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: auto auto auto;
 }
 .footer {
   grid-area: 4 / 1 / 5 / 4;
@@ -55,8 +55,9 @@ body,
 }
 /*! GRILLE CONTENU DU PLATEAU */
 .class-name {
-  display: grid;
-  grid-area: 1 / 2 / 1 /3;
+  grid-area: 1 / 2 / 1 /2;
+  display: flex;
+  justify-content: space-between;
 }
 .player1 {
   grid-area: 2 / 1 / 3 / 2;
@@ -71,9 +72,7 @@ body,
 .game-board {
   grid-area: 2 / 2 / 3 / 3;
 }
-.box_p2 {
-  grid-area: 2 / 3 / 3 / 3;
-}
+
 /* !CONTENU LANCEMENT DU JEU */
 .name_p1 {
   grid-area: 1 / 1 / 2 / 2;
@@ -88,103 +87,9 @@ body,
 /*! JOUEUR 1 */
 .box_p1,
 .box_p2 {
-  display: grid;
-
-  grid-template-rows: 0.3fr 0.7fr 0.3fr 0.1fr 0.5fr 0.3fr 0.5fr;
+  /* display: grid; */
+  display: flex;
+  /* grid-template-rows: 0.3fr 0.7fr 0.3fr 0.1fr 0.5fr 0.3fr 0.5fr; */
+  flex-direction: column;
+  align-items: center;
 }
-
-.name_player1 {
-  grid-area: 1 / 1 / 2 / 3;
-}
-.avatar_p1 {
-  grid-area: 2 / 1 / 3 / 3;
-}
-
-.life_point_p1 {
-  grid-area: 3 / 1 / 4 / 3;
-}
-
-.weapon-name_p1 {
-  grid-area: 4 / 1 / 5 / 3;
-}
-.weapon-img_p1 {
-  grid-area: 5 / 1 / 6 / 3;
-}
-
-.damage_p1 {
-  grid-area: 6 / 1 / 7 / 3;
-}
-
-.attack_p1 {
-  grid-area: 7 / 1 / 7 / 1;
-}
-
-.defense_p1 {
-  grid-area: 7 / 2 / 7 / 2;
-}
-
-/*! JOUEUR 2 */
-/* JOUEUR 2 */
-
-.name_player2 {
-  grid-area: 1 / 1 / 2 / 3;
-}
-.avatar_p2 {
-  grid-area: 2 / 1 / 3 / 3;
-}
-
-.life_point_p2 {
-  grid-area: 3 / 1 / 4 / 3;
-}
-
-.weapon-name_p2 {
-  grid-area: 4 / 1 / 5 / 3;
-}
-.weapon-img_p2 {
-  grid-area: 5 / 1 / 6 / 3;
-}
-
-.damage_p2 {
-  grid-area: 6 / 1 / 7 / 3;
-}
-
-.attack_p2 {
-  grid-area: 7 / 1 / 7 / 1;
-}
-.defense_p2 {
-  grid-area: 7 / 2 / 7 / 2;
-}
-
-/* .ice,
-.fire,
-.lightning,
-.tsunami,
-.tornado,
-.volcano {
-  display: grid;
-}
-.img-ice,
-.img-fire,
-.img-lightning,
-.img-tsunami,
-.img-tornado,
-.img-volcano {
-  grid-area: 1 / 1 / 3 / 2;
-}
-
-.title-ice,
-.title-fire,
-.title-lightning,
-.title-tsunami,
-.title-tornado,
-.title-volcano {
-  grid-area: 1 / 2 / 1 / 2;
-}
-.damage-ice,
-.damage-fire,
-.damage-lightning,
-.damage-tsunami,
-.damage-tornado,
-.damage-volcano {
-  grid-area: 2 / 2 / 3 / 2;
-} */
