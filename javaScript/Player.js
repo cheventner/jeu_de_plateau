@@ -6,10 +6,10 @@ class Player {
     this.imgSrc = imgSrc;
     this.weapons = []; // tableau des armes (pour évolution possible) si on souhaite que le joueur possède plusieurs armes
     this.pv = 100;
-    this.position; // position des joueurs 52 --> 53 -->
-    this.abilityToMove = abilityToMove; // capacité à se deplacer 3 cases
-    this.stepsCount = abilityToMove; // 3 --> 2 --> 1 -- > 0 reset on repart à --> 2
-    this.turnToPlay = turnToPlay; // tourner pour jouer  true --> true --> false
+    this.position;
+    this.abilityToMove = abilityToMove;
+    this.stepsCount = abilityToMove;
+    this.turnToPlay = turnToPlay;
     this.defense = false;
   }
 
@@ -29,7 +29,8 @@ class Player {
     let dmgToTake = dmg;
     if (this.defense === true) {
       // lorsque le joueur est en mode défense il prend 50% de dégat de moins
-      dmgToTake = dmg / 2;
+      dmgToTake = Math.round(dmg / 2);
+
       this.defense = false;
     }
     // si les points de vie descendent en dessous de zero, on les garde a zéro (pour l'affichage)

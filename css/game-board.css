@@ -3,9 +3,9 @@
   height: auto;
   display: flex;
   flex-direction: row;
-  /* flex-direction: column; */
+
   flex-wrap: nowrap;
-  /* flex-wrap: wrap; */
+
   justify-content: center;
 }
 
@@ -13,9 +13,6 @@
   width: 80px;
   height: 80px;
   border: 1px solid #fff;
-  /* background-image: url("/img/floor/case-orange.png"); */
-  /* background-blend-mode: saturation;
-  background-size: cover; */
 }
 
 /* Manipule les éléments a l'intérieur des cases (player, weapons, obstacles) */

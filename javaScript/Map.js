@@ -83,7 +83,7 @@ class GameMap {
     }
   }
 
-  // Fonction permettant de créer les div en HTML
+  //! Fonction permettant de créer les div en HTML
   createCell(classList, bgImgSrc) {
     const cell = document.createElement("div");
     // On ajoute une classe à l'élément HTML
@@ -114,7 +114,7 @@ class GameMap {
       );
     }
 
-    // On récupére l'élément HTML correspondant
+    //! On récupére l'élément HTML correspondant
     const cellWhereToPlace = this.gameboard.querySelector(
       `div.cellnumber-${cellNumberWhereToPlace}`
     );
@@ -142,7 +142,7 @@ class GameMap {
     return Math.floor(Math.random() * max) + 1;
   }
 
-  // Supprimer les cases marquées comme "possibles pour le déplacement"
+  //! Supprimer les cases marquées comme "possibles pour le déplacement"
   removePossibleCells() {
     this.gameboard
       .querySelectorAll('div[class*="possible"]')
@@ -153,7 +153,7 @@ class GameMap {
       });
   }
 
-  // Montrer les positions disponibles pour le joueur courant
+  //! Montrer les positions disponibles pour le joueur courant
   showAvailablePositionsForPlayer(currentPlayerIndex) {
     // A chaque fois qu'on appelle cette méthode on supprime celles actuellement colorées en premier
     this.removePossibleCells();
@@ -165,16 +165,16 @@ class GameMap {
       // Si on a la position courante on veut vérifier que l'on est pas au bout d'une ligne (grille verticale)
       // dans le cas d'un déplacement vers le haut ou vers le bas
       if (checkIfSameLine) {
-        //! On récupére le parent (div.line) de la cellule courante
+        // On récupére le parent (div.line) de la cellule courante
         const currentParent = this.gameboard.querySelector(
           `div.cellnumber-${currentPlayerPosition}`
         ).parentNode;
 
-        //! On essaye de récupérer la cellule voulue
+        // On essaye de récupérer la cellule voulue
         const wantedPosition = this.gameboard.querySelector(
           `div.cellnumber-${pos}`
         );
-        //! On considére qu'on est sur la meme ligne si la cellule voulue existe et que la ligne parente est la même
+        // On considére qu'on est sur la meme ligne si la cellule voulue existe et que la ligne parente est la même
         isOnLine =
           wantedPosition !== null &&
           currentParent === wantedPosition.parentNode;
@@ -312,7 +312,7 @@ class GameMap {
     return otherPlayers.find((p) => positionsAround.includes(p.position));
   }
 
-  // Supprimer les weapons de la map
+  //! on supprime les weapons de la map
   deleteWeapons() {
     // On récupère la liste des éléments (= div) correspondants aux armes
     // que l'on a conservé lors de l'appel a la fonction createWeapons

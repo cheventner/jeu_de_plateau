@@ -1,4 +1,4 @@
-//! on manipule le nom du joueur grâce a l'input "name" correspondant
+//! on manipule le nom du joueur grâce à l'input "name" correspondant
 let inputP1 = document.querySelector(".input-name_p1");
 let namep1 = document.querySelector(".name_player1");
 let inputP2 = document.querySelector(".input-name_p2");
@@ -28,21 +28,20 @@ btnPlay.addEventListener("click", () => {
   battle.start();
 });
 
-// fenêtre d'affichage du gagnant
+//! on génère la fenêtre d'affichage du gagnant
 function showWinner(html) {
   swal
     .fire({
       title: "Winner is :",
       imageUrl: "./img/winner.png",
-      imageWidth: 00,
-      background: "linear-gradient(#50245d, #ab4d60, 70%, #e45f1d, #e9a13d)",
+      background: "linear-gradient(#e45f1d, 70%, #e9a13d)",
       showClass: {
         popup: "animate__animated animate__fadeInDown",
       },
       hideClass: {
         popup: "animate__animated animate__fadeOutUp",
       },
-      type: "success",
+
       html,
       showCloseButton: true,
       showCancelButton: true,
@@ -67,20 +66,21 @@ function showWinner(html) {
     });
 }
 
-// fenêtre d'information lorsque la battle commence
+//! fenêtre d'information lorsque la battle commence
 function showFightBegins(html) {
   swal.fire({
-    title: "Le combat commence ",
+    title: "Avertissement de début du combat",
+    titleText: "Le combat commence ",
     imageUrl: "./img/battle.png",
     imageWidth: 300,
-    background: "linear-gradient(#50245d, #ab4d60, 70%, #e45f1d, #e9a13d)",
+    background: "linear-gradient(#e45f1d, 70%,  #e9a13d)",
     showClass: {
       popup: "animate__animated animate__fadeInDown",
     },
     hideClass: {
       popup: "animate__animated animate__fadeOutUp",
     },
-    timer: 3000,
+    timer: 1000,
 
     html,
     showCloseButton: false,
@@ -94,7 +94,7 @@ const players = [
   new Player("./img/avatar/goblin_attack.png", 3),
 ];
 
-// On récupére uniquement les armes ayant 10 d'atk
+//! On récupére uniquement les armes ayant 10 d'atk
 const baseWeapons = WEAPONS.filter((w) => w.dmg === 10);
 
 function assignDefaultWeapons() {
@@ -104,6 +104,7 @@ function assignDefaultWeapons() {
   });
 }
 
-// on assigne aux joueurs leurs armes par défaut
+//! on assigne aux joueurs leurs armes par défaut
 assignDefaultWeapons();
+
 const battle = new Battle(players, showWinner);
