@@ -221,18 +221,22 @@ class Battle {
   displayBtnAttkDef(current) {
     if (current === 0) {
       // On affiche les boutons pour le joueur 1
-      this.btnAttackP1.style.display = "block";
-      this.btnDefenseP1.style.display = "block";
+      $(this.btnAttackP1).css({ display: "block" });
+
+      $(this.btnDefenseP1).css({ display: "block" });
       // On cache les boutons pour le joueur 2
-      this.btnAttackP2.style.display = "none";
-      this.btnDefenseP2.style.display = "none";
+      $(this.btnAttackP2).css({ display: "none" });
+      $(this.btnDefenseP2).css({ display: "none" });
+      // this.btnAttackP2.style.display = "none";
+      // this.btnDefenseP2.style.display = "none";
     } else if (current === 1) {
       // On affiche les boutons pour le joueur 2
-      this.btnAttackP2.style.display = "block";
-      this.btnDefenseP2.style.display = "block";
+
+      $(this.btnAttackP2).css({ display: "block" });
+      $(this.btnDefenseP2).css({ display: "block" });
       // On cache les boutons pour le joueur 1
-      this.btnAttackP1.style.display = "none";
-      this.btnDefenseP1.style.display = "none";
+      $(this.btnAttackP1).css({ display: "none" });
+      $(this.btnDefenseP1).css({ display: "none" });
     }
   }
 
