@@ -77,7 +77,7 @@ class Battle {
 
   //! on gère le deplacement des joueurs
   movePhase(event) {
-    //! on passe les conditions pour autoriser les déplacements sur les cases "possible" ou "weapon"
+    // on passe les conditions pour autoriser les déplacements sur les cases "possible" ou "weapon"
     const element = event.target;
     // on crée une fonction helper qui va nous servir a vérifier si l'élément cliqué ou son parent sont des cases possibles
     const isPossible = (elem) =>
@@ -94,12 +94,13 @@ class Battle {
     // on accepte de se déplacer si les conditions sont remplies
     if (!isPossibleCell && !isPossibleWeapon) {
       console.log("Not possible cell : ", element);
+      showImpossibletoMove();
       return;
     }
-    //! on récupère le joueur courant
+    // on récupère le joueur courant
     let current = this.getCurrentPlayer();
 
-    //! on récupère le N° de case ou se trouve mon joueur courant pour le faire se déplacer
+    // on récupère le N° de case ou se trouve mon joueur courant pour le faire se déplacer
     let cellWhereToMove = element;
     if (isWeapon) {
       cellWhereToMove = element.parentNode;
@@ -109,11 +110,11 @@ class Battle {
       return;
     }
 
-    //! Le joueur courant a fait un pas ou plus
+    // Le joueur courant a fait un pas ou plus
     const currentPlayer = this.players[current];
     currentPlayer.stepsCount -= playerMoved;
 
-    //! Si il a rencontré une arme dans son passage on lui remplace
+    // Si il a rencontré une arme dans son passage on lui remplace
     if (isWeapon) {
       const weapon = this.map.replaceWeaponDiv(
         element,
@@ -127,7 +128,7 @@ class Battle {
     // on essaye de récupérer l'ennemi a coté du joueur courant si il y en a un
     const enemy = this.map.getEnemyNextToPlayer(current);
 
-    //! c'est au joueur suivant de joueur
+    // c'est au joueur suivant de joueur
     this.nextPlayerToMove(current);
     current = this.getCurrentPlayer();
 
@@ -137,19 +138,19 @@ class Battle {
     //   current = this.getCurrentPlayer();
     // }
 
-    //! Si il s'est arrêté sur une cellule adjacente à un autre player on passe en mode combat
+    // Si il s'est arrêté sur une cellule adjacente à un autre player on passe en mode combat
     if (enemy) {
-      //! on supprime les cellules marquées comme possibles pour le joueur courant
+      // on supprime les cellules marquées comme possibles pour le joueur courant
       this.map.removePossibleCells();
-      //! on supprime les weapons de la map
+      // on supprime les weapons de la map
       this.map.deleteWeapons();
-      //! on affiche les boutons  attaque et défense pour le joueur courant
+      // on affiche les boutons  attaque et défense pour le joueur courant
       this.displayBtnAttkDef(current);
-      //! on arrête d'écouter les évenements de déplacement
+      // on arrête d'écouter les évenements de déplacement
       this.map.gameboard.removeEventListener("click", this.movePhaseHandler);
       showFightBegins();
     } else {
-      //! Sinon on présente les positions possibles pour le joueur suivant
+      // Sinon on présente les positions possibles pour le joueur suivant
       this.map.showAvailablePositionsForPlayer(current);
     }
   }
@@ -159,7 +160,7 @@ class Battle {
     return this.players.findIndex((p) => p.turnToPlay === true);
   }
 
-  // affiche les informations de l'arme portée par le joueur courant
+  //! affiche les informations de l'arme portée par le joueur courant
   updateWeaponInformation(playerIndex) {
     const weapon = this.players[playerIndex].currentWeapon;
     let dmgDiv, nameDiv, imgDiv;
@@ -182,6 +183,7 @@ class Battle {
   // affiche les informations des pv
   updatePvInformation(playerIndex, pv) {
     if (playerIndex === 0) {
+      // un peu de jquery !!!
       $(".life_point_p2").html("Points de vie : " + pv);
     } else if (playerIndex === 1) {
       $(".life_point_p1").html("Points de vie : " + pv);

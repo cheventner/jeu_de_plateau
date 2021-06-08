@@ -6,7 +6,6 @@ body,
 /*! DEBUT GRILLE PRINCIPALE */
 .grid {
   display: grid;
-  /* grid-template-columns: 0.2fr 1fr  0.2fr; */
 }
 .header {
   grid-area: 1 / 1 / 1 / 4;

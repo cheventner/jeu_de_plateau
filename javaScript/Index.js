@@ -45,10 +45,10 @@ function showWinner(html) {
       html,
       showCloseButton: true,
       showCancelButton: true,
-      cancelButtonColor: "#50245d",
+      cancelButtonColor: "#9E4660",
       focusConfirm: false,
       confirmButtonText: "Rejouer",
-      confirmButtonColor: "#50245d",
+      confirmButtonColor: "#9E4660",
       confirmButtonAriaLabel: "Rejouer",
       cancelButtonText: "Quitter",
       cancelButtonAriaLabel: "Quitter",
@@ -89,7 +89,32 @@ function showFightBegins(html) {
     showConfirmButton: false,
   });
 }
+
+// fenêtre d'information pour déplacement impossible
+function showImpossibletoMove(html) {
+  swal.fire({
+    title: "impossible de se déplacer",
+    titleText:
+      "Impossible de vous déplacer, selectionner une case colorée autour de votre joueur",
+
+    background: "linear-gradient(#e45f1d, 70%,  #e9a13d)",
+    showClass: {
+      popup: "animate__animated animate__fadeInDown",
+    },
+    hideClass: {
+      popup: "animate__animated animate__fadeOutUp",
+    },
+    html,
+    showCloseButton: false,
+    showCancelButton: false,
+    focusConfirm: false,
+    showConfirmButton: true,
+    confirmButtonColor: "#9E4660",
+  });
+}
+
 const players = [
+  //! img du player, coloration des cases possibles autour du joueur (3), true pour initialiser le player 1
   new Player("./img/avatar/sorcier_avatar.png", 3, true),
   new Player("./img/avatar/goblin_attack.png", 3),
 ];

@@ -1,6 +1,7 @@
 class GameMap {
   constructor(container, size, players, nbObstacles) {
     this.gameboard = document.querySelector(container);
+    // Conditions pour vérifier que la map comporte au moins 3 cases
     if (!size || size < 3)
       throw new Error("Cannot have empty or too small map");
     this.size = size;
@@ -28,7 +29,7 @@ class GameMap {
     this.createWeapons();
     this.createPlayers();
   }
-
+  //! on crée la grille
   createGrid() {
     let line = document.createElement("div");
     line.classList = "line";
@@ -43,21 +44,21 @@ class GameMap {
       }
     }
   }
-
+  //! on crée les obstacles
   createObstacles() {
     for (let i = this.nbObstacles; i > 0; i--) {
       const result = this.tryToPlaceItem("obstacle", "./img/floor/trou.png");
       this.obstaclesPositions.push(result.position);
     }
   }
-
+  //! on crée les armes
   createWeapons() {
     this.weapons.forEach((weapon) => {
       const result = this.tryToPlaceItem("weapon", weapon.imgSrc);
       this.weaponsItems.push({ weapon: weapon, div: result.div });
     });
   }
-
+  //! on crée les joueurs
   createPlayers() {
     const positions = [];
     for (let i = 0; i < this.players.length; i++) {
@@ -83,7 +84,7 @@ class GameMap {
     }
   }
 
-  //! Fonction permettant de créer les div en HTML
+  //! Fonction permettant de créer les div dans le HTML
   createCell(classList, bgImgSrc) {
     const cell = document.createElement("div");
     // On ajoute une classe à l'élément HTML
@@ -97,7 +98,7 @@ class GameMap {
     return cell;
   }
 
-  // Fonction récursive essayant de placer un objet sur une case de la map
+  //! Fonction récursive essayant de placer un objet sur une case de la map
   tryToPlaceItem(itemClass, itemBgImgSrc, listOfPositionToExclude) {
     // On choisit une case aléatoire sur laquelle placer l'item
     const cellNumberWhereToPlace = this.randomNumber(this.cellsCount - 1);
@@ -144,16 +145,14 @@ class GameMap {
 
   //! Supprimer les cases marquées comme "possibles pour le déplacement"
   removePossibleCells() {
-    this.gameboard
-      .querySelectorAll('div[class*="possible"]')
-      .forEach((element) => {
-        element.classList.remove("possible-1");
-        element.classList.remove("possible-2");
-        element.classList.remove("possible-3");
-      });
+    this.gameboard.querySelectorAll('div[class*="c"]').forEach((element) => {
+      element.classList.remove("possible-1");
+      element.classList.remove("possible-2");
+      element.classList.remove("possible-3");
+    });
   }
 
-  //! Montrer les positions disponibles pour le joueur courant
+  //! fficher les positions disponibles pour les joueurs
   showAvailablePositionsForPlayer(currentPlayerIndex) {
     // A chaque fois qu'on appelle cette méthode on supprime celles actuellement colorées en premier
     this.removePossibleCells();

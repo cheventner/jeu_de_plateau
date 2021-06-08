@@ -41,18 +41,17 @@ class Player {
     }
   }
 
-  // On utilise une property get pour calculer l'atk totale basée sur la somme des armes obtenues
-  // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Functions/get
+  // on calcule l'attaque totale basée sur la somme des armes obtenues
   get totalDmg() {
     if (!this.weapons.length) return 0;
     return this.weapons.reduce((prev, current) => prev + current.dmg, 0);
   }
-
+  // pour déterminer l'arme courante
   get currentWeapon() {
     if (!this.weapons.length) return null;
     return this.weapons[0];
   }
-
+  // pour déterminer le joueur courant
   get isCurrentPlayer() {
     return this.turnToPlay === true;
   }
