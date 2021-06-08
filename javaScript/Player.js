@@ -1,8 +1,8 @@
 // Classe qui représente un joueur
 // Il possède une arme par défaut
 class Player {
-  constructor(imgSrc, abilityToMove, turnToPlay = false) {
-    this.name = "";
+  constructor(imgSrc, playerName, abilityToMove, turnToPlay = false) {
+    this.name = playerName;
     this.imgSrc = imgSrc;
     this.weapons = []; // tableau des armes (pour évolution possible) si on souhaite que le joueur possède plusieurs armes
     this.pv = 100;

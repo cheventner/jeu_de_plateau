@@ -115,8 +115,8 @@ function showImpossibletoMove(html) {
 
 const players = [
   //! img du player, coloration des cases possibles autour du joueur (3), true pour initialiser le player 1
-  new Player("./img/avatar/sorcier_avatar.png", 3, true),
-  new Player("./img/avatar/goblin_attack.png", 3),
+  new Player("./img/avatar/sorcier_avatar.png", "Joueur 1", 3, true),
+  new Player("./img/avatar/goblin_attack.png", "Joueur 2", 3),
 ];
 
 //! On récupére uniquement les armes ayant 10 d'atk
